@@ -33,7 +33,7 @@ let Ratings = (function(){
           //accumulator for computed author and average ratings object
           let topAuthorsAverageRatings = [];
           
-          //loop to topAuthorsRatings object to compute average ratings
+          //loop through topAuthorsRatings object to compute average ratings
           for(prop in topAuthorsRatings)
           {
             let tempObj = {}

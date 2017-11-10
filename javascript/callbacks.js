@@ -1,23 +1,28 @@
 const books = require('./books')
 
-const print = result => console.log('Result:', result)
+const print = result => console.log('Result:', result);
 
-const filterBooksWithTitleStartingWithA = (sortedBooks, callback) => {
-  let filteredBooks
-  /* filter logic here */
-  return callback(filteredBooks)
-}
+let filterBooksWithTitleStartingWithA = (sortedBooks) => {
+  return new Promise((resolve, reject) => {
+    let filteredBooks;
+    /*filter logic*/
+    resolve(filteredBooks);
+    reject('Error');
+  });
+};
 
-const sortBooksAlphabetically = (books, callback) => {
-  let sortedBooks
-  /* sorting logic books */
-  return callback(sortedBooks, print)
-}
+let sortBooksAlphabetically = (books) => {
+  return new Promise((resolve, reject) => {
+    let sortedBooks;
+    /*sorting logic*/
+    resolve(sortedBooks);
+    reject('Error');
+  })
+};
 
-const getBooksAsync = (callback) => {
-  setTimeout(() => {
-    callback(books, filterBooksWithTitleStartingWithA)
-  }, 2000)
-}
-
-getBooksAsync(sortBooksAlphabetically)
+setTimeout(() => {
+  sortBooksAlphabetically(books)
+  .then(sortedBooks => filterBooksWithTitleStartingWithA(sortedBooks))
+  .then(filteredBooks => print(filteredBooks)) 
+  .catch(err => console.log(err))
+}, 2000);
